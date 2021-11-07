@@ -14,6 +14,9 @@ app.use(express.static('assets/images'));
 const userRouter = require("./routes/userRouter");
 
 app.use("/users", userRouter);
+app.use("/", (req, res) => {
+  res.send("pond")
+})
 
 db.sequelize
   .sync()
