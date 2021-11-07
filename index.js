@@ -23,3 +23,5 @@ db.sequelize
   .catch((err) => {
     console.log("err", err);
   });
+
+  // mysql://bee0279549dfba:703dfc5c@us-cdbr-east-04.cleardb.com/heroku_5b8e775f3c3a55f?reconnect=true
