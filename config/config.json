@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "bea29980feeebb",
-    "password": "3b213cae",
-    "database": "vaccination",
-    "host": "us-cdbr-east-04.cleardb.com/heroku_1901b9f6b7614a3?reconnect=true",
+    "username": "bee0279549dfba",
+    "password": "703dfc5c",
+    "database": "heroku_5b8e775f3c3a55f",
+    "host": "us-cdbr-east-04.cleardb.com",
     "dialect": "mysql"
   }
 }
