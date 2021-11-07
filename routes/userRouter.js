@@ -277,7 +277,7 @@ route.get("/:id", async (req, res) => {
     return res.json({ message: "server error" });
   }
 });
-// 10/pmn(N)235452
+
 route.get('/find/:nrc', async (req, res) => {
   const { nrc } = req.params;
   try {
@@ -311,32 +311,37 @@ route.post('/upload-excel', uploadFile.single('file'), async (req, res) => {
 
       rows.forEach( async (row) => {
         let dob = new Date(Math.round((row[2] - (25567 + 1)) * 86400 * 1000))
-        let vacFirst = new Date(Math.round((row[5] - (25567 + 1)) * 86400 * 1000))
-        let vacSecond = new Date(Math.round((row[6] - (25567 + 1)) * 86400 * 1000))
+        let vacFirst = new Date(Math.round((row[9] - (25567 + 1)) * 86400 * 1000))
+        let vacSecond = new Date(Math.round((row[10] - (25567 + 1)) * 86400 * 1000))
+        console.log("vacFirst : ", vacFirst, row[9])
+        console.log("vacSecond : ", vacSecond, row[10])
         let user = {
           username: row[0],
           nrc: row[1],
           dob: dob,
           gender: row[3],
           address: row[4],
+          position: row[5],
+          department: row[6],
+          company: row[7],
+          joinDate: row[8],
           vaccineFirstDate: vacFirst,
           vaccineSecondDate: vacSecond,
-          phone: row[7],
-          note: row[8]
+          phone: row[11],
+          note: row[12]
         };
 
         users.push(user);
       });
 
       try {
-        const result = await vaccinatedusers.bulkCreate(users)
         fs.unlink(path, function (err) {
-              if (err) throw err;
-              console.log('File deleted!');
+          if (err) throw err;
+          console.log('File deleted!');
         });
+        const result = await vaccinatedusers.bulkCreate(users)
         result.forEach( async v => {
-          console.log("Herr : ", v.dataValues.id)
-          const ipaddress = "192.168.100.3"; //192.168.100.149
+          const ipaddress = "192.168.100.3"; // Change DNS or IP
           const src = await qr.toDataURL(
             `${ipaddress}:3000/users/${v.dataValues.id}/scaned`
           );
@@ -405,7 +410,11 @@ route.post("/", validateToken, async (req, res) => {
     vaccineSecondDate,
     phone,
     note,
-    profile,
+    photo,
+    position,
+    department,
+    company,
+    joinDate
   } = req.body;
 
   let username;
@@ -423,11 +432,15 @@ route.post("/", validateToken, async (req, res) => {
       vaccineSecondDate: vaccineSecondDate? vaccineSecondDate: null,
       phone: phone,
       note: note,
-      profile: profile,
+      photo: photo,
+      position,
+      department,
+      company,
+      joinDate
     };
     try {
       const user = await vaccinatedusers.create({ ...userData });
-      const ipaddress = "192.168.100.3"; //192.168.100.149
+      const ipaddress = "192.168.100.3"; // Change DNS or IP
       const src = await qr.toDataURL(
         `${ipaddress}:3000/users/${user.id}/scaned`
       );

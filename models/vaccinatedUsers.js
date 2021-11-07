@@ -20,6 +20,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    position: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    department: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    company: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    joinDate: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
     vaccineFirstDate: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -36,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(500),
       allowNull: true,
     },
-    profile: {
+    photo: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
