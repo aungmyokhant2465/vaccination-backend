@@ -57,7 +57,7 @@ var uploadFile = multer({ storage: storageExcel, fileFilter: excelFilter });
 
 const upload = multer({ storage: storage, limits: { fileSize: 2.5 * 1024 * 1024 }, fileFilter: imageFilter }).single('file')
 
-route.post("/register", validateToken, async (req, res) => {
+route.post("/register", async (req, res) => {
   const { email, username, password } = req.body;
 
   try {
