@@ -313,8 +313,6 @@ route.post('/upload-excel', uploadFile.single('file'), async (req, res) => {
         let dob = new Date(Math.round((row[2] - (25567 + 1)) * 86400 * 1000))
         let vacFirst = new Date(Math.round((row[9] - (25567 + 1)) * 86400 * 1000))
         let vacSecond = new Date(Math.round((row[10] - (25567 + 1)) * 86400 * 1000))
-        console.log("vacFirst : ", vacFirst, row[9])
-        console.log("vacSecond : ", vacSecond, row[10])
         let user = {
           username: row[0],
           nrc: row[1],
@@ -341,9 +339,10 @@ route.post('/upload-excel', uploadFile.single('file'), async (req, res) => {
         });
         const result = await vaccinatedusers.bulkCreate(users)
         result.forEach( async v => {
-          const ipaddress = "192.168.100.3"; // Change DNS or IP
+          // const ipaddress = "192.168.100.3:3000"; // Change DNS or IP
+          const ipaddress = "159.223.34.75"
           const src = await qr.toDataURL(
-            `${ipaddress}:3000/users/${v.dataValues.id}/scaned`
+            `${ipaddress}/users/${v.dataValues.id}/scaned`
           );
           await vaccinatedusers.update(
             {
@@ -440,9 +439,10 @@ route.post("/", validateToken, async (req, res) => {
     };
     try {
       const user = await vaccinatedusers.create({ ...userData });
-      const ipaddress = "192.168.100.3"; // Change DNS or IP
+      // const ipaddress = "192.168.100.3:3000"; // Change DNS or IP
+      const ipaddress = "159.223.34.75";
       const src = await qr.toDataURL(
-        `${ipaddress}:3000/users/${user.id}/scaned`
+        `${ipaddress}/users/${user.id}/scaned`
       );
       await vaccinatedusers.update(
         {

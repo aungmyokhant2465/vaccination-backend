@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ed7cba5b.chunk.css",
+    "main.js": "/static/js/main.26ec5f64.chunk.js",
+    "main.js.map": "/static/js/main.26ec5f64.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6e84d37e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6e84d37e.js.map",
+    "static/js/2.d816c39b.chunk.js": "/static/js/2.d816c39b.chunk.js",
+    "static/js/2.d816c39b.chunk.js.map": "/static/js/2.d816c39b.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.ed7cba5b.chunk.css.map": "/static/css/main.ed7cba5b.chunk.css.map",
+    "static/js/2.d816c39b.chunk.js.LICENSE.txt": "/static/js/2.d816c39b.chunk.js.LICENSE.txt",
+    "static/media/landing.css": "/static/media/Coronavirus.8bc37170.jpg",
+    "static/media/format.15801026.png": "/static/media/format.15801026.png",
+    "static/media/images2.33e185b1.jpg": "/static/media/images2.33e185b1.jpg",
+    "static/media/images3.dae9b2cc.jpg": "/static/media/images3.dae9b2cc.jpg",
+    "static/media/vaccineexcel.756d17ff.xlsx": "/static/media/vaccineexcel.756d17ff.xlsx"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6e84d37e.js",
+    "static/js/2.d816c39b.chunk.js",
+    "static/css/main.ed7cba5b.chunk.css",
+    "static/js/main.26ec5f64.chunk.js"
+  ]
+}

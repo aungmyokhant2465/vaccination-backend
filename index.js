@@ -12,8 +12,17 @@ app.use(express.static('assets/images'));
 
 // routes
 const userRouter = require("./routes/userRouter");
+const path = require("path");
+
+const root = require('path').join(__dirname, 'build');
+app.use(express.static(root));
 
 app.use("/users", userRouter);
+
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 app.use("/", (req, res) => {
   res.send("pond")
 })
@@ -26,5 +35,3 @@ db.sequelize
   .catch((err) => {
     console.log("err", err);
   });
-
-  // mysql://bee0279549dfba:703dfc5c@us-cdbr-east-04.cleardb.com/heroku_5b8e775f3c3a55f?reconnect=true
