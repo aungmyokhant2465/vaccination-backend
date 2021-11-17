@@ -9,7 +9,7 @@
   "test": {
     "username": "root",
     "password": "Root@ungmk2465",
-    "database": "database_test",
+    "database": "vaccination",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
