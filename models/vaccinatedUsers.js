@@ -6,19 +6,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     nrc: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true
     },
     dob: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true
     },
     gender: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true
     },
     position: {
       type: DataTypes.STRING,
@@ -36,29 +36,33 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true
     },
+    id_no: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     vaccineFirstDate: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true
     },
     vaccineSecondDate: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: true
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true
     },
     note: {
       type: DataTypes.STRING(500),
-      allowNull: true,
+      allowNull: true
     },
     photo: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
     qrcode: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
   });
   vaccinatedusers.associate = (models) => {
