@@ -340,7 +340,7 @@ route.post('/upload-excel', uploadFile.single('file'), async (req, res) => {
         const result = await vaccinatedusers.bulkCreate(users)
         result.forEach( async v => {
           // const ipaddress = "192.168.100.3:3000"; // Change DNS or IP
-          const ipaddress = "159.223.34.75"
+          const ipaddress = "http://159.223.34.75"
           const src = await qr.toDataURL(
             `${ipaddress}/users/${v.dataValues.id}/scaned`
           );
@@ -440,7 +440,7 @@ route.post("/", validateToken, async (req, res) => {
     try {
       const user = await vaccinatedusers.create({ ...userData });
       // const ipaddress = "192.168.100.3:3000"; // Change DNS or IP
-      const ipaddress = "159.223.34.75";
+      const ipaddress = "http://159.223.34.75";
       const src = await qr.toDataURL(
         `${ipaddress}/users/${user.id}/scaned`
       );
