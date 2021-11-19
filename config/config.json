@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "Root@ungmk2465",
+    "database": "vaccination",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

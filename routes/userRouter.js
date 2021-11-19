@@ -495,13 +495,23 @@ route.put("/:id", validateToken, async (req, res) => {
 
 route.delete('/:id', validateToken, async (req, res) => {
   console.log("here deletion")
+  let toDelete
   try {
-      await vaccinatedusers.destroy({
-        where: {
-          id: req.params.id
-        }
+    toDelete = await vaccinatedusers.findOne({ where: {id: req.params.id }});
+    console.log("here : ", toDelete.id)
+    await vaccinatedusers.destroy({
+      where: {
+        id: toDelete.id
+      }
+    });
+    if(toDelete.photo) {
+      let path = "assets/images/" + toDelete.photo;
+      fs.unlink(path, function (err) {
+        if (err) throw err;
+        console.log('File deleted!');
       });
-      res.json({ message: "success" });
+    }
+    res.json({ message: "success" });
   } catch (err) {
     console.log("err", err);
     return res.json({ message: "server error" });
