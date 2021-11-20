@@ -310,9 +310,10 @@ route.post('/upload-excel', uploadFile.single('file'), async (req, res) => {
       let users = [];
 
       rows.forEach( async (row) => {
-        let dob = row[2] ? new Date(Math.round((row[2] - (25567 + 1)) * 86400 * 1000)) : null
-        let vacFirst = row[10] ? new Date(Math.round((row[10] - (25567 + 1)) * 86400 * 1000)) : null
-        let vacSecond = row[11] ? new Date(Math.round((row[11] - (25567 + 1)) * 86400 * 1000)) : null
+        let dob = row[2] ? new Date(Math.round((row[2] - (25567 + 2)) * 86400 * 1000)) : null
+        let joinD = row[9] ? new Date(Math.round((row[9] - (25567 + 2)) * 86400 * 1000)) : null
+        let vacFirst = row[10] ? new Date(Math.round((row[10] - (25567 + 2)) * 86400 * 1000)) : null
+        let vacSecond = row[11] ? new Date(Math.round((row[11] - (25567 + 2)) * 86400 * 1000)) : null
         let user = {
           username: row[0],
           nrc: row[1],
@@ -323,7 +324,7 @@ route.post('/upload-excel', uploadFile.single('file'), async (req, res) => {
           position: row[6],
           department: row[7],
           company: row[8],
-          joinDate: row[9],
+          joinDate: joinD,
           vaccineFirstDate: vacFirst,
           vaccineSecondDate: vacSecond,
           phone: row[12],
