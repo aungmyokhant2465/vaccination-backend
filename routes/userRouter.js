@@ -9,6 +9,15 @@ const multer = require('multer');
 const readXlsxFile = require('read-excel-file/node')
 const fs = require('fs');
 
+const imageDelete = (image_name) => {
+  if(image_name) {
+    let path = "assets/images/" + image_name;
+    fs.unlink(path, function (err) {
+      if (err) throw err;
+      console.log('File deleted!');
+    });
+  }
+}
 
 const imageFilter = (req, file, cb) => {
   console.log("image: ", file.mimetype)
@@ -412,6 +421,7 @@ route.post("/", validateToken, async (req, res) => {
     phone,
     note,
     photo,
+    recordCard,
     position,
     department,
     company,
@@ -435,6 +445,7 @@ route.post("/", validateToken, async (req, res) => {
       phone: phone,
       note: note,
       photo: photo,
+      recordCard,
       position,
       department,
       company,
@@ -474,7 +485,14 @@ route.post("/", validateToken, async (req, res) => {
 });
 
 route.put("/:id", validateToken, async (req, res) => {
-  const { id, data } = req.body;
+  const { data, photo, recordCard } = req.body;
+  const id = req.params.id
+  if(photo) {
+    imageDelete(photo)
+  }
+  if(recordCard) {
+    imageDelete(recordCard)
+  }
 
   try {
     const user = await vaccinatedusers.update(
@@ -495,7 +513,6 @@ route.put("/:id", validateToken, async (req, res) => {
 });
 
 route.delete('/:id', validateToken, async (req, res) => {
-  console.log("here deletion")
   let toDelete
   try {
     toDelete = await vaccinatedusers.findOne({ where: {id: req.params.id }});
@@ -505,13 +522,8 @@ route.delete('/:id', validateToken, async (req, res) => {
         id: toDelete.id
       }
     });
-    if(toDelete.photo) {
-      let path = "assets/images/" + toDelete.photo;
-      fs.unlink(path, function (err) {
-        if (err) throw err;
-        console.log('File deleted!');
-      });
-    }
+    imageDelete(toDelete.photo)
+    imageDelete(toDelete.recordCard)
     res.json({ message: "success" });
   } catch (err) {
     console.log("err", err);

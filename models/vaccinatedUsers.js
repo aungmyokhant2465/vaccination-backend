@@ -60,6 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: true
     },
+    recordCard: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     qrcode: {
       type: DataTypes.TEXT,
       allowNull: true
