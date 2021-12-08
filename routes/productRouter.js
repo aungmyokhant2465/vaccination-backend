@@ -78,8 +78,8 @@ route.get('/:id', async (req, res) => {
 route.post('/', validateToken, async (req, res) => {
     try {
         const data = await products.create({ ...req.body })
-        const ipaddress = "192.168.100.3:3000"; // Change DNS or IP
-        // const ipaddress = "http://159.223.34.75";
+        // const ipaddress = "192.168.100.3:3000"; // Change DNS or IP
+        const ipaddress = "http://159.223.34.75";
         const src = await qr.toDataURL(`${ipaddress}/products/${data.id}/scaned`)
         await data.update(
             {
