@@ -63,7 +63,6 @@ var storageExcel = multer.diskStorage({
 
 var uploadFile = multer({ storage: storageExcel, fileFilter: excelFilter });
 
-
 const upload = multer({ storage: storage, limits: { fileSize: 2.5 * 1024 * 1024 }, fileFilter: imageFilter }).single('file')
 
 route.post("/register", async (req, res) => {
@@ -142,8 +141,8 @@ route.get("/", validateToken, async (req, res) => {
       include: [vaccinatedusers],
       offset: offset, limit: 5
     });
-    if(!isNaN(Number(req.query.totalPages)) && Number(req.query.totalPages) === 0) {
-      counts = await qrtimes.count({})
+    if(isNaN(Number(req.query.totalPages)) || Number(req.query.totalPages) === 0 ) {
+      counts = await vaccinatedusers.count({})
     } else {
       counts = req.query.totalPages
     }
@@ -516,7 +515,6 @@ route.delete('/:id', validateToken, async (req, res) => {
   let toDelete
   try {
     toDelete = await vaccinatedusers.findOne({ where: {id: req.params.id }});
-    console.log("here : ", toDelete.id)
     await vaccinatedusers.destroy({
       where: {
         id: toDelete.id

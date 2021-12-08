@@ -1,0 +1,2 @@
+GET http://localhost:4000/products
+accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNjM4NjIzMTI2fQ.SjAWhNVqtAeQVKBv6mJ9K_y7yivmoG4OG9hRpYiTOWM
